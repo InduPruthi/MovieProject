@@ -1,0 +1,67 @@
+import{ Imovie } from'./imovie'
+export class Cmovie {
+    Imovies: Imovie[]=[{
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:2017,
+        Genre:"Action",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    }
+    ]
+}
