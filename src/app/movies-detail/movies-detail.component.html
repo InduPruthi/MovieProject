@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row  " style="background-color:Blue;">
+  <div class="row  " style="background-color:Grey;">
     <div class="col-lg-3 col-centered ">
       Generic
     </div>
@@ -22,50 +22,29 @@
      </div> 
       <div class="col-lg-9 col-centered well ">
       <div class="input-group">
-	<input type="text" class="form-control" placeholder="Search via year or movie name">
+	<input type="text" class="form-control" #txtSearch placeholder="Search via year or movie name">
       <span class="input-group-btn">
-        <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i>Search </button>
+        <button class="btn btn-search" type="button" (click)=(GetMoviesAsPerSearch(txtSearch.value))><i class="fa fa-search fa-fw" ></i>Search </button>
       </span>
-</div><div>
-        <div class="row form-row">
+</div>
+<div *ngFor="let movie of _lstMovies">
+        <div class="row form-row" >
         <div class="col-lg-3 col-centered well" style="margin: 5px;"> 
          <figure>
-          <img src="/assets/Images/Image1.jpg" class="img-rounded" alt="Cinque Terre">
+          <img src={{movie.Image}}  class="img-rounded" alt={{movie.Name}}>
+          <figcaption><b>{{movie.Name}}</b></figcaption>
           <figcaption>****</figcaption>
-        <figcaption>Year:2014</figcaption>
-        <figcaption>Genre:Action</figcaption>
-         <figcaption>Director: Nitin</figcaption>
+        <figcaption>Year:{{movie.Year}}</figcaption>
+        <figcaption>Genre:{{movie.Genre}}</figcaption>
+         <figcaption>Director: {{movie.Director}}</figcaption>
           
-         <figcaption>Actor: Nitin</figcaption>
+         <figcaption>Actor: {{movie.Actors}}</figcaption>
           <figcaption>Plot:A thief who came..</figcaption>
-         
+          <button (click)="UpdateMovieData()" style="font-size:24px" data-toggle="modal" data-target="#myModal"> <i class="material-icons">Edit</i><img src="../assets/Images/Edit.png"/></button>
              </figure>
 
         </div>
-        <div class="col-lg-3 col-centered well " style="margin: 5px;">
-         <figure>
-          <img src="/assets/Images/Image1.jpg" class="img-rounded" alt="Cinque Terre">
-        <figcaption>Director:Nitin
           
-        </figcaption>
-         <figcaption>
-          Actor: Nitin
-        </figcaption>
-             </figure>
-        </div>
-        <div class="col-lg-3 col-centered " style="margin: 5px;">
-         <figure>
-          <img src="/assets/Images/Image1.jpg" class="img-rounded" alt="Cinque Terre">
-        <figcaption>Director:Nitin
-          
-        </figcaption>
-         <figcaption>
-          Actor: Nitin
-        </figcaption>
-             </figure>
-        </div>
-        </div>
-        </div>     
    </div>
    
 </div>

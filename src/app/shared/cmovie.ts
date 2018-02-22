@@ -1,67 +1,75 @@
 import{ Imovie } from'./imovie'
-export class Cmovie {
-    Imovies: Imovie[]=[{
+export const dtMovies:Imovie[] =
+   
+   [{
+        Id:1,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
+        Year:"2017",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     },
     {
+        Id:2,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
+        Year:"2016",
+        Genre:"Love",
+        Actors:"ayz,abc",
+        Director:"historical view ",
+    },
+    {
+        Id:3,
+        Image: "1.jpg",
+        Name:"Padmawat",
+        Star:5,
+        Year:"2013",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     },
     {
+        Id:4,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
+        Year:"2014",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     },
     {
+        Id:5,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
+        Year:"2017",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     },
     {
+        Id:6,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
+        Year:"2017",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     },
     {
+        Id:7,
         Image: "1.jpg",
         Name:"Padmawat",
         Star:5,
-        Year:2017,
-        Genre:"Action",
-        Actors:"ayz,abc",
-        Director:"historical view ",
-    },
-    {
-        Image: "1.jpg",
-        Name:"Padmawat",
-        Star:5,
-        Year:2017,
+        Year:"2014",
         Genre:"Action",
         Actors:"ayz,abc",
         Director:"historical view ",
     }
     ]
-}
+
