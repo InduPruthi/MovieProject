@@ -1,51 +1,52 @@
 <div class="container">
-  <div class="row  " style="background-color:Grey;">
-    <div class="col-lg-3 col-centered ">
-      Generic
+    <br>
+    <div class="row pos centered" style="background-color:Grey;">
+      <div class="col-lg-3 col-centered ">
+        <b>Generic</b>
+      </div>
+      <div class="col-lg-9  ">
+        Movies History
+      </div>
     </div>
-    <div class="col-lg-9 ">
-     Movies History
-    </div>
- 
- </div>
-  <div class="row pos">
-     <div class="col-lg-3  well ">
+    <br>
+    <div class="row pos">
+      <div class="col-lg-3  well ">
         <ul type="none" class="list-group">
-          <li class="list-group-item active">All
-            <li class="list-group-item">Action
-              <li class="list-group-item"> Crime
-                <li class="list-group-item">Drama
-                  <li class="list-group-item">Mystery
-                    <li class="list-group-item">Aci Fi
-                      <li class="list-group-item"> Adventure
+          <li class="list-group-item " (click)="menuSelection(Genre.Type)" *ngFor="let Genre of lstGenre " [ngClass]="{'active': selectedItem == Genre.Type}" >{{Genre.Type}}
         </ul>
-     </div> 
+      </div> 
       <div class="col-lg-9 col-centered well ">
-      <div class="input-group">
-	<input type="text" class="form-control" #txtSearch placeholder="Search via year or movie name">
-      <span class="input-group-btn">
-        <button class="btn btn-search" type="button" (click)=(GetMoviesAsPerSearch(txtSearch.value))><i class="fa fa-search fa-fw" ></i>Search </button>
-      </span>
-</div>
-<div *ngFor="let movie of _lstMovies">
-        <div class="row form-row" >
-        <div class="col-lg-3 col-centered well" style="margin: 5px;"> 
-         <figure>
-          <img src={{movie.Image}}  class="img-rounded" alt={{movie.Name}}>
-          <figcaption><b>{{movie.Name}}</b></figcaption>
-          <figcaption>****</figcaption>
-        <figcaption>Year:{{movie.Year}}</figcaption>
-        <figcaption>Genre:{{movie.Genre}}</figcaption>
-         <figcaption>Director: {{movie.Director}}</figcaption>
-          
-         <figcaption>Actor: {{movie.Actors}}</figcaption>
-          <figcaption>Plot:A thief who came..</figcaption>
-          <button (click)="UpdateMovieData()" style="font-size:24px" data-toggle="modal" data-target="#myModal"> <i class="material-icons">Edit</i><img src="../assets/Images/Edit.png"/></button>
-             </figure>
-
+        <div class="input-group">
+          <input type="text" class="form-control" #txtSearch placeholder="Search via year or movie name">
+          <span class="input-group-btn">
+            <button class="btn btn-search" type="button" (click)=(GetMoviesAsPerSearch(txtSearch.value))><i class="fa fa-search fa-fw" ></i>Search </button>
+          </span>
         </div>
-          
-   </div>
-   
-</div>
+        <div >
+          <div class="row form-row"*ngIf='_lstMovies' >
+            <div class="col-lg-3 col-centered well" *ngFor="let movie of _lstMovies | paginate: { itemsPerPage: 3, currentPage: p} " style="margin: 5px;"> 
+              <figure>
+                <img src={{movie.Image}}  class="img-rounded" alt={{movie.Name}}>
+                <figcaption><b>{{movie.Name}}</b></figcaption>
+                <figcaption>****</figcaption>
+                <figcaption>Year:{{movie.Year}}</figcaption>
+                <figcaption>Genre:{{movie.Genre}}</figcaption>
+                <figcaption>Director: {{movie.Director}}</figcaption>
+                <figcaption>Actor: {{movie.Actors}}</figcaption>
+                <figcaption data-placement="top" title="Hooray!">Plot:A thief who came..</figcaption>
+              <button  data-placement="top" title="Edit Movie Detail" (click)="UpdateMovieData(movie.Id)"  data-toggle="modal" data-target="#myModal">  <span class="glyphicon">&#x270f;</span></button>
+              </figure>
+              
+            </div>           
+              <pagination-controls *ngIf='_lstMovies.length>0' (pageChange)="p = $event"></pagination-controls>
+          </div>
+          <div class="row form-row" *ngIf='!_lstMovies.length>0' >
+              <figcaption><b>No match found </b></figcaption>
+            </div>
+        </div>
+      </div>
+    </div>		
+
+  </div>
+                
 

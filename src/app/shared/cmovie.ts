@@ -71,5 +71,6 @@ export const dtMovies:Imovie[] =
         Actors:"ayz,abc",
         Director:"historical view ",
     }
-    ]
+    ];
 
+   
