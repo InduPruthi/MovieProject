@@ -13,3 +13,12 @@
     background: #1c1c1c;
     color: #fff;
   }
+  .checked {
+    color: orange;
+}
+.crop{
+  overflow:hidden;
+}
+div{
+  cursor:pointer;
+}

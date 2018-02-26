@@ -15,7 +15,7 @@
           <li class="list-group-item " (click)="menuSelection(Genre.Type)" *ngFor="let Genre of lstGenre " [ngClass]="{'active': selectedItem == Genre.Type}" >{{Genre.Type}}
         </ul>
       </div> 
-      <div class="col-lg-9 col-centered well ">
+      <div class="col-lg-9  well ">
         <div class="input-group">
           <input type="text" class="form-control" #txtSearch placeholder="Search via year or movie name">
           <span class="input-group-btn">
@@ -26,16 +26,67 @@
           <div class="row form-row"*ngIf='_lstMovies' >
             <div class="col-lg-3 col-centered well" *ngFor="let movie of _lstMovies | paginate: { itemsPerPage: 3, currentPage: p} " style="margin: 5px;"> 
               <figure>
-                <img src={{movie.Image}}  class="img-rounded" alt={{movie.Name}}>
+                <img src={{movie.Image}}  class="img-rounded" alt={{movie.Name}} width="180" height="236">
                 <figcaption><b>{{movie.Name}}</b></figcaption>
-                <figcaption>****</figcaption>
+                <figcaption>
+                    <div class="crop" 
+                    [style.width.px]="movie.Star*20"
+                    [title]="movie.Star">
+                  
+                  <div style="width:100px">
+                  <span class="fa fa-star checked"></span> 
+                  <span class="fa fa-star checked"></span> 
+                  <span class="fa fa-star checked"></span> 
+                  <span class="fa fa-star checked"></span> 
+                  <span class="fa fa-star checked"></span> 
+                  </div>
+                  </div>
+                  </figcaption>
                 <figcaption>Year:{{movie.Year}}</figcaption>
                 <figcaption>Genre:{{movie.Genre}}</figcaption>
                 <figcaption>Director: {{movie.Director}}</figcaption>
                 <figcaption>Actor: {{movie.Actors}}</figcaption>
-                <figcaption data-placement="top" title="Hooray!">Plot:A thief who came..</figcaption>
-              <button  data-placement="top" title="Edit Movie Detail" (click)="UpdateMovieData(movie.Id)"  data-toggle="modal" data-target="#myModal">  <span class="glyphicon">&#x270f;</span></button>
-              </figure>
+                <figcaption data-placement="top" [title]="movie.ShortDescription"><b>Plot:</b>{{(movie.ShortDescription.length)>100?movie.ShortDescription.substr(0,100)+"...":movie.ShortDescription}}</figcaption>
+                <button  data-placement="top" title="Edit Movie Detail"   (click)="OpenModel(movie.Id)">  <span class="glyphicon">&#x270f;</span></button>
+                
+                  <ngx-smart-modal #myModal [identifier]="'myModal'" >
+                    <form #movieForm="ngForm" (ngSubmit)="Update()" >
+                        <div class="form-group" style="background-color:lightskyblue;text-align: center">
+                            <h1>Edit Movie Details</h1>
+                            
+                          </div>
+                    <div class="form-group" >
+                      <img  class="form-control input-sm"[src]="objMovie.Image" class="img-fluid" alt="Cinque Terre">
+                    </div>
+                   
+                    <div class="form-group">
+                      <figcaption class="form-control input-sm" style=" font-size: 40px;color:Blue">****</figcaption>
+                    </div>
+                    <div class="form-group">
+                        
+                          <input required type="text" class="form-control input-sm"#YearControl="ngModel"  [(ngModel)]='objMovie.Year' name="Year" placeHolder="Please Enter Year" />
+                        <span class="help-block" *ngIf="YearControl.invalid">Please Enter Year</span>
+                        </div>
+                      <div class="form-group" [ngClass]="{'has-error':!GenreControl. valid}" >
+                        <input required type="text" class="form-control input-sm"[ngClass]="{'is-invalid':!GenreControl. valid}" #GenreControl="ngModel"   [(ngModel)]='objMovie.Genre'name="Genre"  PlaceHolder="Please Enter Genre" />
+                        <span class="help-block invalid-feedback" *ngIf="GenreControl.invalid">Please enter Genre</span>
+                      </div>
+                      <div class="form-group">
+                        <input required type="text" #Actors="ngModel"class="form-control input-sm" [(ngModel)]='objMovie.Actors'name="Actor" PlaceHolder="Please Enter Actor" /></div>
+                        <span class="help-block" *ngIf="Actors.invalid">Please enter atleast one actor name</span>
+                        <div class="form-group">
+                          <textarea  required class="form-control" rows="5" PlaceHolder="Please Enter short discription"[(ngModel)]='objMovie.ShortDescription' name="Description"> </textarea>
+              
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal"(click)="Reset()" >Reset</button>
+                          <button type="Submit" class="btn btn-primary" data-dismiss="modal" [disabled]='movieForm.invalid' >Save</button>
+                        </div>
+                    
+                  </form>
+                 
+                  </ngx-smart-modal>          
+                    </figure>
               
             </div>           
               <pagination-controls *ngIf='_lstMovies.length>0' (pageChange)="p = $event"></pagination-controls>
@@ -45,8 +96,16 @@
             </div>
         </div>
       </div>
-    </div>		
-
+    </div>	
   </div>
+
+    
+      
+    
+    
+    
+      
+
+
                 
 

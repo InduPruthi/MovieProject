@@ -10,16 +10,23 @@ export class MovieServicesService implements OnInit {
   {
     
   }
-  GetAllMovies()
+  GetAllMovies(SearchCriteria:string)
   {
+    if(SearchCriteria=="")
+    {
     return(dtMovies);
+    }
+    else{
+      let query=movie=>( movie.Actors.includes(SearchCriteria)|| movie.Director.includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Name.includes(SearchCriteria));
+      return(this.MoviesDetail=dtMovies.filter(query));
+    }
   }
   GetMoviesAsPerSearch(pageNumber:number,Genre:string,SearchCriteria: string)
   {
     let query;
     if(SearchCriteria!=null && SearchCriteria!="")
     {
-      query=movie=>movie.Genre.includes(Genre)&&( movie.Actors.includes(SearchCriteria)|| movie.Director.includes(SearchCriteria)|| movie.Year.includes(SearchCriteria));
+      query=movie=>movie.Genre.includes(Genre)&&( movie.Actors.includes(SearchCriteria)|| movie.Director.includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Year.includes(SearchCriteria));
     }
     else
     {
@@ -29,9 +36,9 @@ export class MovieServicesService implements OnInit {
 
   }
 
-  GetMovieAsPerId(Id:number,)
+  GetMovieAsPerId(Id:number):Imovie
   {
-    this.MoviesDetail=dtMovies.filter(movie=>movie.Id==Id);
+    return(dtMovies.filter(movie=>movie.Id==Id)[0]);
    
   }
   UpdateMovieData(_movie : Imovie)
@@ -46,6 +53,7 @@ export class MovieServicesService implements OnInit {
                        movie.Year=_movie.Year;
                         movie.Director=_movie.Director
                         movie.Actors=_movie.Actors;
+                        movie.ShortDescription=_movie.ShortDescription;
                       });
 }
 

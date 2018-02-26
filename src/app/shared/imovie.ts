@@ -7,4 +7,5 @@ export interface Imovie {
     Genre:string;
     Actors:string;
     Director: string;
+    ShortDescription:string;
 }
