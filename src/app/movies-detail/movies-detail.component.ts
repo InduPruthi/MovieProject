@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewInit ,AfterContentInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import{MovieServicesService} from'../services/movie-services.service';
 import { Imovie } from '../shared/imovie';
 import{ Genre} from '../shared/genre';
@@ -9,7 +9,7 @@ import {NgxSmartModalService} from 'ngx-smart-modal'
   styleUrls: ['./movies-detail.component.css'],
   providers:[MovieServicesService]
 })
-export class MoviesDetailComponent implements OnInit,AfterViewInit,AfterContentInit {
+export class MoviesDetailComponent implements OnInit {
   _lstMovies:Imovie[];
   _movie :Imovie;
   isActive:any;
@@ -42,27 +42,14 @@ export class MoviesDetailComponent implements OnInit,AfterViewInit,AfterContentI
     this._lstMovies=this._movieService.GetMoviesAsPerSearch(0,this.selectedItem,SearchCriteria);
     }
 }
-  UpdateMovieData(Id:number)
-  {
-    //this._movie={'Id':Id,'Name':'Xyz','Director':'bvnb','Genre':'Tp','Star':3,'Year':'1998','Actors':'test','Image':'',}
-    //this._movieService.UpdateMovieData(this._movie);
-  }
+  
   menuSelection(value)
   {
     this.selectedItem=value;
     this.GetMoviesAsPerSearch("");
     
   }
-  ngAfterViewInit() {
-    
   
-      
-     
-    }
-    ngAfterContentInit()
-    {
-      
-    }
     OpenModel(id:number)
     {
      
@@ -73,14 +60,18 @@ export class MoviesDetailComponent implements OnInit,AfterViewInit,AfterContentI
     } 
     Reset()
     {
-      this.objMovie.Name="";
+      
       this.objMovie.Year="";
       this.objMovie.Director="";
       this.objMovie.Actors="";
+      this.objMovie.ShortDescription="";
+      this.objMovie.Genre="";
     }
     Update()
     {
       this._movieService.UpdateMovieData(this.objMovie);
+      alert("Saved Successfully");
+      this.ngxSmartModalService.getModal('myModal').close();
     }
           
  

@@ -1,12 +1,13 @@
 <div class="container">
     <br>
     <div class="row pos centered" style="background-color:Grey;">
-      <div class="col-lg-3 col-centered ">
-        <b>Generic</b>
+      <div class="col-lg-3 col-centered " style="text-align:center">
+       <h3><b>Generic</b></h3> 
       </div>
-      <div class="col-lg-9  ">
-        Movies History
+      <div class="col-lg-9  " style="text-align:center">
+        <h3><b> Movies History</b></h3>
       </div>
+   
     </div>
     <br>
     <div class="row pos">
@@ -19,7 +20,7 @@
         <div class="input-group">
           <input type="text" class="form-control" #txtSearch placeholder="Search via year or movie name">
           <span class="input-group-btn">
-            <button class="btn btn-search" type="button" (click)=(GetMoviesAsPerSearch(txtSearch.value))><i class="fa fa-search fa-fw" ></i>Search </button>
+            <button class="btn btn-search" type="button" (click)=(GetMoviesAsPerSearch(txtSearch.value))><i class="fa fa-search fa-fw" ></i> </button>
           </span>
         </div>
         <div >
@@ -56,27 +57,40 @@
                             
                           </div>
                     <div class="form-group" >
-                      <img  class="form-control input-sm"[src]="objMovie.Image" class="img-fluid" alt="Cinque Terre">
+                      <img  class="form-control input-sm"[src]="objMovie.Image" class="img-fluid" alt="objMovie.Name">
                     </div>
                    
                     <div class="form-group">
-                      <figcaption class="form-control input-sm" style=" font-size: 40px;color:Blue">****</figcaption>
-                    </div>
-                    <div class="form-group">
+                      <figcaption><b>{{objMovie.Name}}</b></figcaption>
+                      <figcaption>
+                          <div class="crop" 
+                          [style.width.px]="objMovie.Star*20"
+                          [title]="objMovie.Star">
                         
-                          <input required type="text" class="form-control input-sm"#YearControl="ngModel"  [(ngModel)]='objMovie.Year' name="Year" placeHolder="Please Enter Year" />
-                        <span class="help-block" *ngIf="YearControl.invalid">Please Enter Year</span>
+                        <div style="width:100px">
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span> 
+                        <span class="fa fa-star checked"></span> 
+                        </div>
+                        </div>
+                        </figcaption>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-error':!YearControl. valid}">
+                          <input required type="text" class="form-control input-sm" [ngClass]="{'is-invalid':!YearControl. valid}"#YearControl="ngModel"  [(ngModel)]='objMovie.Year' name="Year" placeHolder="Please Enter Year" />
+                        <span class="help-block invalid-feedback" *ngIf="YearControl.invalid">Please Enter Year</span>
                         </div>
                       <div class="form-group" [ngClass]="{'has-error':!GenreControl. valid}" >
                         <input required type="text" class="form-control input-sm"[ngClass]="{'is-invalid':!GenreControl. valid}" #GenreControl="ngModel"   [(ngModel)]='objMovie.Genre'name="Genre"  PlaceHolder="Please Enter Genre" />
                         <span class="help-block invalid-feedback" *ngIf="GenreControl.invalid">Please enter Genre</span>
                       </div>
-                      <div class="form-group">
-                        <input required type="text" #Actors="ngModel"class="form-control input-sm" [(ngModel)]='objMovie.Actors'name="Actor" PlaceHolder="Please Enter Actor" /></div>
-                        <span class="help-block" *ngIf="Actors.invalid">Please enter atleast one actor name</span>
-                        <div class="form-group">
-                          <textarea  required class="form-control" rows="5" PlaceHolder="Please Enter short discription"[(ngModel)]='objMovie.ShortDescription' name="Description"> </textarea>
-              
+                      <div class="form-group" [ngClass]="{'has-error':!ActorsControl. valid}">
+                        <input required type="text"class="form-control input-sm" [ngClass]="{'is-invalid':!ActorsControl. valid}" #ActorsControl="ngModel" [(ngModel)]='objMovie.Actors'name="Actor" PlaceHolder="Please Enter Actor" />
+                        <span class="help-block invalid-feedback" *ngIf="ActorsControl.invalid">Please enter atleast one actor name</span>
+                        <div class="form-group" [ngClass]="{'has-error':!SMControl. valid}"></div>
+                          <textarea  required class="form-control input-sm" [ngClass]="{'is-invalid':!SMControl. valid}" #SMControl="ngModel" rows="5" PlaceHolder="Please Enter short discription"[(ngModel)]='objMovie.ShortDescription' name="Description"> </textarea>
+                          <span class="help-block invalid-feedback" *ngIf="SMControl.invalid">Please enter atleast one actor name</span>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-primary" data-dismiss="modal"(click)="Reset()" >Reset</button>
@@ -91,8 +105,12 @@
             </div>           
               <pagination-controls *ngIf='_lstMovies.length>0' (pageChange)="p = $event"></pagination-controls>
           </div>
-          <div class="row form-row" *ngIf='!_lstMovies.length>0' >
+          <br/>
+          <div class="row form-row  " *ngIf='!_lstMovies.length>0' >
+           
+              <div class="col-lg-3 col-centered well border">
               <figcaption><b>No match found </b></figcaption>
+            </div>
             </div>
         </div>
       </div>

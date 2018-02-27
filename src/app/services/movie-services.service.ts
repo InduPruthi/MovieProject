@@ -12,12 +12,14 @@ export class MovieServicesService implements OnInit {
   }
   GetAllMovies(SearchCriteria:string)
   {
+    
     if(SearchCriteria=="")
     {
     return(dtMovies);
     }
     else{
-      let query=movie=>( movie.Actors.includes(SearchCriteria)|| movie.Director.includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Name.includes(SearchCriteria));
+      SearchCriteria= SearchCriteria.toLowerCase()
+      let query=movie=>( movie.Actors.toLowerCase().includes(SearchCriteria)|| movie.Director.toLowerCase().includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Name.toLowerCase().includes(SearchCriteria));
       return(this.MoviesDetail=dtMovies.filter(query));
     }
   }
@@ -26,7 +28,8 @@ export class MovieServicesService implements OnInit {
     let query;
     if(SearchCriteria!=null && SearchCriteria!="")
     {
-      query=movie=>movie.Genre.includes(Genre)&&( movie.Actors.includes(SearchCriteria)|| movie.Director.includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Year.includes(SearchCriteria));
+      SearchCriteria=SearchCriteria.toLowerCase();
+      query=movie=>movie.Genre.includes(Genre)&&( movie.Actors.toLowerCase().includes(SearchCriteria)|| movie.Director.toLowerCase().includes(SearchCriteria)|| movie.Year.includes(SearchCriteria)||movie.Name.toLowerCase().includes(SearchCriteria));
     }
     else
     {
@@ -47,8 +50,6 @@ export class MovieServicesService implements OnInit {
   // dtMovies[index] = _movie;
     dtMovies.filter(movie=>movie.Id===_movie.Id)
                     .filter(movie=>{
-                      
-                       
                       movie.Genre=_movie.Genre;
                        movie.Year=_movie.Year;
                         movie.Director=_movie.Director
